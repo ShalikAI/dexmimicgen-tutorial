@@ -60,15 +60,15 @@ python scripts/download_hf_dataset.py --path /path/to/save/datasets
 
 By default, the datasets will be saved to `./datasets/generated`. There will be in total 9 datasets of 60 GB.
 ```
-two_arm_box_cleanup.hdf5
-two_arm_can_sort_random.hdf5
-two_arm_coffee.hdf5
-two_arm_drawer_cleanup.hdf5
-two_arm_lift_tray.hdf5
-two_arm_pouring.hdf5
-two_arm_threading.hdf5
-two_arm_three_piece_assembly.hdf5
-two_arm_transport.hdf5
+two_arm_box_cleanup.hdf5 (1016 episodes)
+two_arm_can_sort_random.hdf5 (1020 episodes)
+two_arm_coffee.hdf5 (1014 episodes)
+two_arm_drawer_cleanup.hdf5 (1026 episodes)
+two_arm_lift_tray.hdf5 (1033 episodes)
+two_arm_pouring.hdf5 (1009 episodes)
+two_arm_threading.hdf5 (1025 episodes)
+two_arm_three_piece_assembly.hdf5 (1006 episodes)
+two_arm_transport.hdf5 (1029 episodes)
 ```
 
 And then, you can playback one demo in the dataset by running:
@@ -80,6 +80,25 @@ python scripts/playback_datasets.py --dataset datasets/generated/two_arm_can_sor
 <div align="center">
   <img src="images/humanoid_action.gif" width="400">
 </div>
+
+If you want to see no. of episodes:
+```
+python3 - << 'EOF'
+import h5py
+
+dataset = "./datasets/generated/two_arm_can_sort_random.hdf5" 
+                                  
+with h5py.File(dataset, "r") as f:
+    demos = list(f["data"].keys())
+    print("Total number of episodes:", len(demos))
+    print("First few demos:", sorted(demos)[:10])
+EOF
+```
+Here is the output:
+```
+Total number of episodes: 1020
+First few demos: ['demo_0', 'demo_1', 'demo_10', 'demo_100', 'demo_1000', 'demo_1001', 'demo_1002', 'demo_1003', 'demo_1004', 'demo_1005']
+```
 
 Inspect 1 episode in detail:
 ```
