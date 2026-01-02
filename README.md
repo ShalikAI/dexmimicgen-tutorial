@@ -172,8 +172,8 @@ PY
 ```
 Here is the output:
 ```
-states: (226, 103) float64
-actions: (226, 24) float64
+states: (276, 112) float64
+actions: (276, 24) float64
 ```
 Inspect `action_dict` and `datagen_info`:
 ```
